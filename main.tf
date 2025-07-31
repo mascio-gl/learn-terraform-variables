@@ -101,7 +101,6 @@ module "elb_http" {
 
   number_of_instances = length(module.ec2_instances.instance_ids)
   instances           = module.ec2_instances.instance_ids
-  http_tokens = required
 
   listener = [{
     instance_port     = "80"

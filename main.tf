@@ -101,6 +101,7 @@ module "elb_http" {
 
   number_of_instances = length(module.ec2_instances.instance_ids)
   instances           = module.ec2_instances.instance_ids
+  http_tokens = required
 
   listener = [{
     instance_port     = "80"
@@ -130,7 +131,7 @@ module "ec2_instances" {
   instance_type  = var.instance_type
   subnet_ids         = module.vpc.private_subnets[*]
   security_group_ids = [module.app_security_group.this_security_group_id]
-  http_tokens = enabled
+
   tags = {
     project     = "project-alpha",
     environment = "development"

@@ -98,7 +98,7 @@ module "elb_http" {
 
   security_groups = [module.lb_security_group.this_security_group_id]
   subnets         = module.vpc.public_subnets
-  http_tokens = true
+
   number_of_instances = length(module.ec2_instances.instance_ids)
   instances           = module.ec2_instances.instance_ids
 
@@ -130,7 +130,7 @@ module "ec2_instances" {
   instance_type  = var.instance_type
   subnet_ids         = module.vpc.private_subnets[*]
   security_group_ids = [module.app_security_group.this_security_group_id]
-
+  http_tokens = enabled
   tags = {
     project     = "project-alpha",
     environment = "development"

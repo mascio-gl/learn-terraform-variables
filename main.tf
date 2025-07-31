@@ -98,7 +98,7 @@ module "elb_http" {
 
   security_groups = [module.lb_security_group.this_security_group_id]
   subnets         = module.vpc.public_subnets
-
+  http_tokens = true
   number_of_instances = length(module.ec2_instances.instance_ids)
   instances           = module.ec2_instances.instance_ids
 
